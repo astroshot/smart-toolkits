@@ -116,8 +116,9 @@ performdelete() {
     # "delete" = move to trash
     if [ -n "$unsafe" ]; then
         if [ -n "$verbose" ]; then echo -e "Deleting $red$1$norm"; fi
-        #UNSAFE: permanently remove files.
-        rm -rf -- "$1"
+        # UNSAFE: permanently remove files.
+        # CAUTION: I have renamed /bin/rm to /bin/rm.bak
+        rm.bak -rf -- "$1"
     else
         if [ -n "$verbose" ]; then echo -e "Moving $blue$k$norm to $red${trash}$norm"; fi
         mv -b -- "$1" "${trash}" # moves and backs up old files
